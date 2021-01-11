@@ -29,9 +29,19 @@
 
     {{ $src := "" }}
     {{ with $v.Params.integration_id }}
-      {{ $src = (print ($v.Params.integration_id | lower) "_large.svg") }}
+      {{ $int_id := . | lower }}
+
+      {{ if eq $int_id "datadog-agent" }}
+          {{ $int_id = "dd-agent-source" }}
+      {{ end }}
+
+      {{ $src = (print $int_id "_large.svg") }}
     {{ else }}
-      {{ $src = (print (replace ($urlname | lower) "_" "-") "_large.svg") }}
+      {{ with $v.Params.name }}
+        {{ $src = (print ($v.Params.name | lower) "_large.svg") }}
+      {{ else }}
+        {{ $src = (print (replace ($urlname | lower) "_" "-") "_large.svg") }}
+      {{ end }}
     {{ end }}
 
     {{ $indx :=  $src }}
@@ -93,10 +103,20 @@
 
         {{ $src := "" }}
         {{ with $v.Params.integration_id }}
-          {{ $src = (print ($v.Params.integration_id | lower) "_large.svg") }}
-        {{ else }}
-          {{ $src = (print (replace ($urlname | lower) "_" "-") "_large.svg") }}
-        {{ end }}
+            {{ $int_id := . | lower }}
+
+            {{ if eq $int_id "datadog-agent" }}
+                {{ $int_id = "dd-agent-source" }}
+            {{ end }}
+
+            {{ $src = (print $int_id "_large.svg") }}
+          {{ else }}
+            {{ with $v.Params.name }}
+              {{ $src = (print ($v.Params.name | lower) "_large.svg") }}
+            {{ else }}
+              {{ $src = (print (replace ($urlname | lower) "_" "-") "_large.svg") }}
+            {{ end }}
+          {{ end }}
 
         {{ $indx := $src }}
 
