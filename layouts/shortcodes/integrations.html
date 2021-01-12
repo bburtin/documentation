@@ -126,6 +126,9 @@
             {{ end }}
           {{ end }}
 
+        {{ if or (in $src "amazon") (in $src "aws") (in $src "google") (in $src "microsoft") (in $src "azure") }}
+          {{ $src = replace $src "_large" "_small" }}
+        {{ end }}
         {{ $indx := $src }}
 
         {{/* if  $src */}}
@@ -154,6 +157,10 @@
                             {{ else }}
                                 {{ $.Scratch.Set "url" (print (.Site.Params.integrations_img_url) $indx "") | safeURL }}
                             {{ end }}
+
+                            <!-- just overwrite for now --->
+                            {{ $.Scratch.Set "url" (print (.Site.Params.integrations_img_url) $indx "") | safeURL }}
+
                         {{ else }}
                             {{ $.Scratch.Set "url" (print (.Site.Params.integrations_img_url) "integrations_logos/dd-noimage.png" "?auto=format") | safeURL }}
                         {{ end }}
