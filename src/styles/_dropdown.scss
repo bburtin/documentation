@@ -1,3 +1,49 @@
+.region-lang-selector-container {
+  .js-lang-selector {
+    z-index: 99;
+  }
+
+  .btn {
+    border: 1px solid $gray-light;
+    background: $gray-lightest;
+    border-radius: 4px;
+    height: 30px;
+    padding: 0rem 0.75rem;
+    color: $brand-primary;
+  }
+
+  .dropdown-menu {
+    padding: 0;
+    border-radius: 6px;
+    border: none;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
+
+    a:hover {
+      background: $gray-lighter;
+      color: $brand-primary;
+    }
+  }
+}
+
+.chevron {
+  width: 8px;
+  height: 8px;
+  border: 2px solid $brand-primary;
+  display: inline-block;
+}
+
+.chevron-down {
+  transform: rotate(45deg);
+  border-top: none;
+  border-left: none;
+}
+
+.chevron-up {
+  transform: rotate(-135deg);
+  border-top: none;
+  border-left: none;
+}
+
 
 // Detect lightness
 @function detectLightness($color) {
