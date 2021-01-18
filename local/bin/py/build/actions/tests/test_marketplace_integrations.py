@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 import unittest
-from actions import integrations
+from integrations import remove_section
 
 class TestMarketplaceIntegrations(unittest.TestCase):
     def test_image_src_replaced_by_shortcode(self):
@@ -8,7 +8,7 @@ class TestMarketplaceIntegrations(unittest.TestCase):
       ## instead we should find a shortcode pattern somewhere in the generated markdown
 
       ## markdown_img_search_regex = r"!\[(.*?)\]\((.*?)\)"
-      
+
       self.assertEqual('test'.upper(), 'TEST')
 
     def test_section_removed_from_markdown(self):
@@ -31,7 +31,7 @@ class TestMarketplaceIntegrations(unittest.TestCase):
       ---
       """
 
-      result = integrations.remove_section(markdown_to_test, header_to_remove)
+      result = remove_section(markdown_to_test, header_to_remove)
       self.assertNotIn(result, header_to_remove)
       self.assertIn(result, '## This should not be removed')
 
