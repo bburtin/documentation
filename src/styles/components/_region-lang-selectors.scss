@@ -1,8 +1,23 @@
 .region-lang-selector-container {
-  padding: 1.5rem 1rem;
+  padding: 1.75rem 1rem;
   
   p {
     font-size: 14px;
     line-height: 18px;
+    color: black !important;
+    margin-bottom: 10px;
+  }
+
+  @include media-breakpoint-up(lg) {
+    padding: 4.05rem 1rem;
+  }
+
+  .region-select-container {
+    margin-left: 15px;
+
+    @include media-breakpoint-up(lg) {
+      margin-left: 0;
+      margin-top: 30px;
+    }
   }
 }

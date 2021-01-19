@@ -1,5 +1,5 @@
 .region-lang-selector-container {
-  .js-lang-selector {
+  .dropdown {
     z-index: 99;
   }
 
@@ -30,9 +30,14 @@
       padding-left: 10px;
     }
 
-    a:hover {
-      background: $gray-lighter;
-      color: $brand-primary;
+    a {
+      color: #212529;
+
+      &:hover {
+        background: $gray-lighter;
+        color: $brand-primary;
+        cursor: pointer;
+      }
     }
   }
 }
