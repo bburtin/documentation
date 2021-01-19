@@ -31,47 +31,47 @@
 - org_name: DataDog
 
   repos:
-  # - repo_name: dogweb
+   - repo_name: dogweb
 
-  #   contents:
+     contents:
 
-  #   - action: integrations
-  #     branch: prod
-  #     globs:
-  #     - integration/*/*_metadata.csv
-  #     - integration/*/manifest.json
-  #     - integration/*/service_checks.json
-  #     - integration/*/README.md
+     - action: integrations
+       branch: prod
+       globs:
+       - integration/*/*_metadata.csv
+       - integration/*/manifest.json
+       - integration/*/service_checks.json
+       - integration/*/README.md
 
-  # - repo_name: integrations-core
-  #   contents:
+   - repo_name: integrations-core
+     contents:
 
-  #   - action: integrations
-  #     branch: master
-  #     globs:
-  #     - "*/metadata.csv"
-  #     - "*/manifest.json"
-  #     - "*/assets/service_checks.json"
-  #     - "*/README.md"
+     - action: integrations
+       branch: master
+       globs:
+       - "*/metadata.csv"
+       - "*/manifest.json"
+       - "*/assets/service_checks.json"
+       - "*/README.md"
 
-  #   - action: pull-and-push-folder
-  #     branch: master
-  #     globs:
-  #     - docs/dev/*.md
-  #     options:
-  #       dest_dir: '/developers/integrations/'
-  #       path_to_remove: 'docs/dev/'
+     - action: pull-and-push-folder
+       branch: master
+       globs:
+       - docs/dev/*.md
+       options:
+         dest_dir: '/developers/integrations/'
+         path_to_remove: 'docs/dev/'
 
-  # - repo_name: integrations-extras
-  #   contents:
+   - repo_name: integrations-extras
+     contents:
 
-  #   - action: integrations
-  #     branch: master
-  #     globs:
-  #     - "*/metadata.csv"
-  #     - "*/manifest.json"
-  #     - "*/assets/service_checks.json"
-  #     - "*/README.md"
+     - action: integrations
+       branch: master
+       globs:
+       - "*/metadata.csv"
+       - "*/manifest.json"
+       - "*/assets/service_checks.json"
+       - "*/README.md"
 
   - repo_name: marketplace
     contents:
@@ -85,412 +85,412 @@
       - "*/README.md"
       - "*/images/*.png"
 
-  # - repo_name: ansible-datadog
-  #   contents:
+   - repo_name: ansible-datadog
+     contents:
 
-  #   - action: pull-and-push-file
-  #     branch: master
-  #     globs:
-  #     - README.md
-  #     options:
-  #       dest_path: '/agent/basic_agent_usage/'
-  #       file_name: 'ansible.md'
-  #       front_matters:
-  #         title: Ansible
-  #         kind: documentation
-  #         dependencies: ["https://github.com/DataDog/ansible-datadog/blob/master/README.md"]
+     - action: pull-and-push-file
+       branch: master
+       globs:
+       - README.md
+       options:
+         dest_path: '/agent/basic_agent_usage/'
+         file_name: 'ansible.md'
+         front_matters:
+           title: Ansible
+           kind: documentation
+           dependencies: ["https://github.com/DataDog/ansible-datadog/blob/master/README.md"]
 
-  # - repo_name: chef-datadog
-  #   contents:
+   - repo_name: chef-datadog
+     contents:
 
-  #   - action: pull-and-push-file
-  #     branch: master
-  #     globs:
-  #     - README.md
-  #     options:
-  #       dest_path: '/agent/basic_agent_usage/'
-  #       file_name: 'chef.md'
-  #       front_matters:
-  #         title: Chef
-  #         kind: documentation
-  #         dependencies: ["https://github.com/DataDog/chef-datadog/blob/master/README.md"]
+     - action: pull-and-push-file
+       branch: master
+       globs:
+       - README.md
+       options:
+         dest_path: '/agent/basic_agent_usage/'
+         file_name: 'chef.md'
+         front_matters:
+           title: Chef
+           kind: documentation
+           dependencies: ["https://github.com/DataDog/chef-datadog/blob/master/README.md"]
 
-  # - repo_name: heroku-buildpack-datadog
-  #   contents:
+   - repo_name: heroku-buildpack-datadog
+     contents:
 
-  #   - action: pull-and-push-file
-  #     branch: master
-  #     globs:
-  #     - README.md
-  #     options:
-  #       dest_path: '/agent/basic_agent_usage/'
-  #       file_name: 'heroku.md'
-  #       front_matters:
-  #         title: Datadog Heroku Buildpack
-  #         kind: documentation
-  #         dependencies: ["https://github.com/DataDog/heroku-buildpack-datadog/blob/master/README.md"]
-  #         aliases:
-  #         - /developers/faq/how-do-i-collect-metrics-from-heroku-with-datadog
+     - action: pull-and-push-file
+       branch: master
+       globs:
+       - README.md
+       options:
+         dest_path: '/agent/basic_agent_usage/'
+         file_name: 'heroku.md'
+         front_matters:
+           title: Datadog Heroku Buildpack
+           kind: documentation
+           dependencies: ["https://github.com/DataDog/heroku-buildpack-datadog/blob/master/README.md"]
+           aliases:
+           - /developers/faq/how-do-i-collect-metrics-from-heroku-with-datadog
 
-  # - repo_name: puppet-datadog-agent
-  #   contents:
+   - repo_name: puppet-datadog-agent
+     contents:
 
-  #   - action: pull-and-push-file
-  #     branch: master
-  #     globs:
-  #     - README.md
-  #     options:
-  #       dest_path: '/agent/basic_agent_usage/'
-  #       file_name: 'puppet.md'
-  #       front_matters:
-  #         title: Puppet
-  #         kind: documentation
-  #         dependencies: ["https://github.com/DataDog/puppet-datadog-agent/blob/master/README.md"]
+     - action: pull-and-push-file
+       branch: master
+       globs:
+       - README.md
+       options:
+         dest_path: '/agent/basic_agent_usage/'
+         file_name: 'puppet.md'
+         front_matters:
+           title: Puppet
+           kind: documentation
+           dependencies: ["https://github.com/DataDog/puppet-datadog-agent/blob/master/README.md"]
 
-  # - repo_name: datadog-formula
-  #   contents:
+   - repo_name: datadog-formula
+     contents:
 
-  #   - action: pull-and-push-file
-  #     branch: master
-  #     globs:
-  #     - README.md
-  #     options:
-  #       dest_path: '/agent/basic_agent_usage/'
-  #       file_name: 'saltstack.md'
-  #       front_matters:
-  #         title: SaltStack
-  #         kind: documentation
-  #         dependencies: ["https://github.com/DataDog/datadog-formula/blob/master/README.md"]
+     - action: pull-and-push-file
+       branch: master
+       globs:
+       - README.md
+       options:
+         dest_path: '/agent/basic_agent_usage/'
+         file_name: 'saltstack.md'
+         front_matters:
+           title: SaltStack
+           kind: documentation
+           dependencies: ["https://github.com/DataDog/datadog-formula/blob/master/README.md"]
 
-  # - repo_name: dd-trace-rb
-  #   contents:
-  #   - action: pull-and-push-file
-  #     branch: master
-  #     globs:
-  #     - 'docs/GettingStarted.md'
-  #     options:
-  #       dest_path: '/tracing/setup_overview/setup/'
-  #       file_name: 'ruby.md'
-  #       front_matters:
-  #         dependencies: ["https://github.com/DataDog/dd-trace-rb/blob/master/docs/GettingStarted.md"]
-  #         title: Tracing Ruby Applications
-  #         kind: documentation
-  #         code_lang: ruby
-  #         type: multi-code-lang
-  #         code_lang_weight: 15
-  #         aliases:
-  #         - /tracing/ruby/
-  #         - /tracing/languages/ruby/
-  #         - /tracing/setup/ruby/
-  #         - /tracing/setup_overview/ruby/
-  #         - /agent/apm/ruby/
+   - repo_name: dd-trace-rb
+     contents:
+     - action: pull-and-push-file
+       branch: master
+       globs:
+       - 'docs/GettingStarted.md'
+       options:
+         dest_path: '/tracing/setup_overview/setup/'
+         file_name: 'ruby.md'
+         front_matters:
+           dependencies: ["https://github.com/DataDog/dd-trace-rb/blob/master/docs/GettingStarted.md"]
+           title: Tracing Ruby Applications
+           kind: documentation
+           code_lang: ruby
+           type: multi-code-lang
+           code_lang_weight: 15
+           aliases:
+           - /tracing/ruby/
+           - /tracing/languages/ruby/
+           - /tracing/setup/ruby/
+           - /tracing/setup_overview/ruby/
+           - /agent/apm/ruby/
 
-  # - repo_name: datadog-serverless-functions
-  #   contents:
-  #   - action: pull-and-push-file
-  #     branch: master
-  #     globs:
-  #     - 'aws/logs_monitoring/README.md'
-  #     options:
-  #       dest_path: '/serverless/'
-  #       file_name: 'forwarder.md'
-  #       front_matters:
-  #         dependencies: ["https://github.com/DataDog/datadog-serverless-functions/blob/master/aws/logs_monitoring/README.md"]
-  #         title: Datadog Forwarder
-  #         kind: documentation
-  #         aliases:
-  #           - /serverless/troubleshooting/installing_the_forwarder/
+   - repo_name: datadog-serverless-functions
+     contents:
+     - action: pull-and-push-file
+       branch: master
+       globs:
+       - 'aws/logs_monitoring/README.md'
+       options:
+         dest_path: '/serverless/'
+         file_name: 'forwarder.md'
+         front_matters:
+           dependencies: ["https://github.com/DataDog/datadog-serverless-functions/blob/master/aws/logs_monitoring/README.md"]
+           title: Datadog Forwarder
+           kind: documentation
+           aliases:
+             - /serverless/troubleshooting/installing_the_forwarder/
 
-  # - repo_name: datadog-lambda-python
-  #   contents:
-  #   - action: pull-and-push-file
-  #     branch: master
-  #     globs:
-  #     - 'README.md'
-  #     options:
-  #       dest_path: '/serverless/datadog_lambda_library/'
-  #       file_name: 'python.md'
-  #       front_matters:
-  #         dependencies: ["https://github.com/DataDog/datadog-lambda-python/blob/master/README.md"]
-  #         title: Datadog Lambda Library for Python
-  #         kind: documentation
+   - repo_name: datadog-lambda-python
+     contents:
+     - action: pull-and-push-file
+       branch: master
+       globs:
+       - 'README.md'
+       options:
+         dest_path: '/serverless/datadog_lambda_library/'
+         file_name: 'python.md'
+         front_matters:
+           dependencies: ["https://github.com/DataDog/datadog-lambda-python/blob/master/README.md"]
+           title: Datadog Lambda Library for Python
+           kind: documentation
 
-  # - repo_name: datadog-lambda-js
-  #   contents:
-  #   - action: pull-and-push-file
-  #     branch: master
-  #     globs:
-  #     - 'README.md'
-  #     options:
-  #       dest_path: '/serverless/datadog_lambda_library/'
-  #       file_name: 'nodejs.md'
-  #       front_matters:
-  #         dependencies: ["https://github.com/DataDog/datadog-lambda-js/blob/master/README.md"]
-  #         title: Datadog Lambda Library for Node.js
-  #         kind: documentation
+   - repo_name: datadog-lambda-js
+     contents:
+     - action: pull-and-push-file
+       branch: master
+       globs:
+       - 'README.md'
+       options:
+         dest_path: '/serverless/datadog_lambda_library/'
+         file_name: 'nodejs.md'
+         front_matters:
+           dependencies: ["https://github.com/DataDog/datadog-lambda-js/blob/master/README.md"]
+           title: Datadog Lambda Library for Node.js
+           kind: documentation
 
-  # - repo_name: datadog-lambda-rb
-  #   contents:
-  #   - action: pull-and-push-file
-  #     branch: master
-  #     globs:
-  #     - 'README.md'
-  #     options:
-  #       dest_path: '/serverless/datadog_lambda_library/'
-  #       file_name: 'ruby.md'
-  #       front_matters:
-  #         dependencies: ["https://github.com/DataDog/datadog-lambda-rb/blob/master/README.md"]
-  #         title: Datadog Lambda Library for Ruby
-  #         kind: documentation
+   - repo_name: datadog-lambda-rb
+     contents:
+     - action: pull-and-push-file
+       branch: master
+       globs:
+       - 'README.md'
+       options:
+         dest_path: '/serverless/datadog_lambda_library/'
+         file_name: 'ruby.md'
+         front_matters:
+           dependencies: ["https://github.com/DataDog/datadog-lambda-rb/blob/master/README.md"]
+           title: Datadog Lambda Library for Ruby
+           kind: documentation
 
-  # - repo_name: datadog-lambda-go
-  #   contents:
-  #   - action: pull-and-push-file
-  #     branch: master
-  #     globs:
-  #     - 'README.md'
-  #     options:
-  #       dest_path: '/serverless/datadog_lambda_library/'
-  #       file_name: 'go.md'
-  #       front_matters:
-  #         dependencies: ["https://github.com/DataDog/datadog-lambda-go/blob/master/README.md"]
-  #         title: Datadog Lambda Library for Go
-  #         kind: documentation
+   - repo_name: datadog-lambda-go
+     contents:
+     - action: pull-and-push-file
+       branch: master
+       globs:
+       - 'README.md'
+       options:
+         dest_path: '/serverless/datadog_lambda_library/'
+         file_name: 'go.md'
+         front_matters:
+           dependencies: ["https://github.com/DataDog/datadog-lambda-go/blob/master/README.md"]
+           title: Datadog Lambda Library for Go
+           kind: documentation
 
-  # - repo_name: datadog-lambda-java
-  #   contents:
-  #   - action: pull-and-push-file
-  #     branch: master
-  #     globs:
-  #     - 'README.md'
-  #     options:
-  #       dest_path: '/serverless/datadog_lambda_library/'
-  #       file_name: 'java.md'
-  #       front_matters:
-  #         dependencies: ["https://github.com/DataDog/datadog-lambda-java/blob/master/README.md"]
-  #         title: Datadog Lambda Library for Java
-  #         kind: documentation
+   - repo_name: datadog-lambda-java
+     contents:
+     - action: pull-and-push-file
+       branch: master
+       globs:
+       - 'README.md'
+       options:
+         dest_path: '/serverless/datadog_lambda_library/'
+         file_name: 'java.md'
+         front_matters:
+           dependencies: ["https://github.com/DataDog/datadog-lambda-java/blob/master/README.md"]
+           title: Datadog Lambda Library for Java
+           kind: documentation
 
-  # - repo_name: serverless-plugin-datadog
-  #   contents:
-  #   - action: pull-and-push-file
-  #     branch: master
-  #     globs:
-  #     - 'README.md'
-  #     options:
-  #       dest_path: '/serverless/serverless_integrations/'
-  #       file_name: 'plugin.md'
-  #       front_matters:
-  #         dependencies: ["https://github.com/DataDog/serverless-plugin-datadog/blob/master/README.md"]
-  #         title: Datadog Serverless Plugin
-  #         kind: documentation
+   - repo_name: serverless-plugin-datadog
+     contents:
+     - action: pull-and-push-file
+       branch: master
+       globs:
+       - 'README.md'
+       options:
+         dest_path: '/serverless/serverless_integrations/'
+         file_name: 'plugin.md'
+         front_matters:
+           dependencies: ["https://github.com/DataDog/serverless-plugin-datadog/blob/master/README.md"]
+           title: Datadog Serverless Plugin
+           kind: documentation
 
-  # - repo_name: datadog-cloudformation-macro
-  #   contents:
-  #   - action: pull-and-push-file
-  #     branch: master
-  #     globs:
-  #     - 'serverless/README.md'
-  #     options:
-  #       dest_path: '/serverless/serverless_integrations/'
-  #       file_name: 'macro.md'
-  #       front_matters:
-  #         dependencies: ["https://github.com/DataDog/datadog-cloudformation-macro/blob/master/serverless/README.md"]
-  #         title: Datadog Serverless Macro
-  #         kind: documentation
+   - repo_name: datadog-cloudformation-macro
+     contents:
+     - action: pull-and-push-file
+       branch: master
+       globs:
+       - 'serverless/README.md'
+       options:
+         dest_path: '/serverless/serverless_integrations/'
+         file_name: 'macro.md'
+         front_matters:
+           dependencies: ["https://github.com/DataDog/datadog-cloudformation-macro/blob/master/serverless/README.md"]
+           title: Datadog Serverless Macro
+           kind: documentation
 
-  # - repo_name: datadog-ci
-  #   contents:
-  #   - action: pull-and-push-file
-  #     branch: master
-  #     globs:
-  #     - 'src/commands/lambda/README.md'
-  #     options:
-  #       dest_path: '/serverless/serverless_integrations/'
-  #       file_name: 'cli.md'
-  #       front_matters:
-  #         dependencies: ["https://github.com/DataDog/datadog-ci/blob/master/src/commands/lambda/README.md"]
-  #         title: Datadog Serverless CLI
-  #         kind: documentation
+   - repo_name: datadog-ci
+     contents:
+     - action: pull-and-push-file
+       branch: master
+       globs:
+       - 'src/commands/lambda/README.md'
+       options:
+         dest_path: '/serverless/serverless_integrations/'
+         file_name: 'cli.md'
+         front_matters:
+           dependencies: ["https://github.com/DataDog/datadog-ci/blob/master/src/commands/lambda/README.md"]
+           title: Datadog Serverless CLI
+           kind: documentation
 
-  # - repo_name: dd-sdk-android
-  #   contents:
-  #   - action: pull-and-push-file
-  #     branch: master
-  #     globs:
-  #     - 'docs/rum_collection.md'
-  #     options:
-  #       dest_path: '/real_user_monitoring/'
-  #       file_name: 'android.md'
-  #       front_matters:
-  #         dependencies: ["https://github.com/DataDog/dd-sdk-android/blob/master/docs/rum_collection.md"]
-  #         title: Getting Started with Android RUM Collection
-  #         kind: documentation
+   - repo_name: dd-sdk-android
+     contents:
+     - action: pull-and-push-file
+       branch: master
+       globs:
+       - 'docs/rum_collection.md'
+       options:
+         dest_path: '/real_user_monitoring/'
+         file_name: 'android.md'
+         front_matters:
+           dependencies: ["https://github.com/DataDog/dd-sdk-android/blob/master/docs/rum_collection.md"]
+           title: Getting Started with Android RUM Collection
+           kind: documentation
 
-  # - repo_name: browser-sdk
-  #   contents:
-  #   - action: pull-and-push-file
-  #     branch: master
-  #     globs:
-  #     - 'packages/rum/README.md'
-  #     options:
-  #       dest_path: '/real_user_monitoring/browser/'
-  #       file_name: '_index.md'
-  #       front_matters:
-  #         dependencies: ["https://github.com/DataDog/browser-sdk/blob/master/packages/rum/README.md"]
-  #         title: RUM Browser Monitoring
-  #         kind: documentation
-  #         aliases:
-  #           - /real_user_monitoring/setup
-  #   - action: pull-and-push-file
-  #     branch: master
-  #     globs:
-  #     - 'packages/logs/README.md'
-  #     options:
-  #       dest_path: '/logs/log_collection/'
-  #       file_name: 'javascript.md'
-  #       front_matters:
-  #         dependencies: ["https://github.com/DataDog/browser-sdk/blob/master/packages/logs/README.md"]
-  #         title: Browser Log Collection
-  #         kind: documentation
-  #         aliases:
-  #         - /logs/log_collection/web_browser
+   - repo_name: browser-sdk
+     contents:
+     - action: pull-and-push-file
+       branch: master
+       globs:
+       - 'packages/rum/README.md'
+       options:
+         dest_path: '/real_user_monitoring/browser/'
+         file_name: '_index.md'
+         front_matters:
+           dependencies: ["https://github.com/DataDog/browser-sdk/blob/master/packages/rum/README.md"]
+           title: RUM Browser Monitoring
+           kind: documentation
+           aliases:
+             - /real_user_monitoring/setup
+     - action: pull-and-push-file
+       branch: master
+       globs:
+       - 'packages/logs/README.md'
+       options:
+         dest_path: '/logs/log_collection/'
+         file_name: 'javascript.md'
+         front_matters:
+           dependencies: ["https://github.com/DataDog/browser-sdk/blob/master/packages/logs/README.md"]
+           title: Browser Log Collection
+           kind: documentation
+           aliases:
+           - /logs/log_collection/web_browser
 
-  # - repo_name: datadog-cloudformation-resources
-  #   contents:
-  #   - action: pull-and-push-file
-  #     branch: master
-  #     globs:
-  #     - 'README.md'
-  #     options:
-  #       dest_path: '/developers/'
-  #       file_name: 'amazon_cloudformation.md'
-  #       front_matters:
-  #         dependencies: ["https://github.com/DataDog/datadog-cloudformation-resources/blob/master/README.md"]
-  #         title: Datadog-Amazon CloudFormation
-  #         kind: documentation
+   - repo_name: datadog-cloudformation-resources
+     contents:
+     - action: pull-and-push-file
+       branch: master
+       globs:
+       - 'README.md'
+       options:
+         dest_path: '/developers/'
+         file_name: 'amazon_cloudformation.md'
+         front_matters:
+           dependencies: ["https://github.com/DataDog/datadog-cloudformation-resources/blob/master/README.md"]
+           title: Datadog-Amazon CloudFormation
+           kind: documentation
 
-  # - repo_name: dd-sdk-android
-  #   contents:
+   - repo_name: dd-sdk-android
+     contents:
 
-  #   - action: pull-and-push-file
-  #     branch: master
-  #     globs:
-  #     - 'docs/log_collection.md'
-  #     options:
-  #       dest_path: '/logs/log_collection/'
-  #       file_name: 'android.md'
-  #       front_matters:
-  #         title: Android Log Collection
-  #         kind: documentation
-  #         description: "Collect logs from your Android applications."
-  #         dependencies: ["https://github.com/DataDog/dd-sdk-android/blob/master/docs/log_collection.md"]
-  #         further_reading:
-  #           - link: "https://github.com/DataDog/dd-sdk-android"
-  #             tag: "Github"
-  #             text: "dd-sdk-android Source code"
-  #           - link: "logs/explorer"
-  #             tag: "Documentation"
-  #             text: "Learn how to explore your logs"
+     - action: pull-and-push-file
+       branch: master
+       globs:
+       - 'docs/log_collection.md'
+       options:
+         dest_path: '/logs/log_collection/'
+         file_name: 'android.md'
+         front_matters:
+           title: Android Log Collection
+           kind: documentation
+           description: "Collect logs from your Android applications."
+           dependencies: ["https://github.com/DataDog/dd-sdk-android/blob/master/docs/log_collection.md"]
+           further_reading:
+             - link: "https://github.com/DataDog/dd-sdk-android"
+               tag: "Github"
+               text: "dd-sdk-android Source code"
+             - link: "logs/explorer"
+               tag: "Documentation"
+               text: "Learn how to explore your logs"
 
-  #   - action: pull-and-push-file
-  #     branch: master
-  #     globs:
-  #     - 'docs/trace_collection.md'
-  #     options:
-  #       dest_path: '/tracing/setup_overview/setup/'
-  #       file_name: 'android.md'
-  #       front_matters:
-  #         title: Android Trace Collection
-  #         kind: documentation
-  #         beta: true
-  #         description: "Collect traces from your Android applications."
-  #         dependencies: ["https://github.com/DataDog/dd-sdk-android/blob/master/docs/trace_collection.md"]
-  #         further_reading:
-  #           - link: "https://github.com/DataDog/dd-sdk-android"
-  #             tag: "Github"
-  #             text: "dd-sdk-android Source code"
-  #           - link: "tracing/visualization/"
-  #             tag: "Documentation"
-  #             text: "Explore your services, resources and traces"
+     - action: pull-and-push-file
+       branch: master
+       globs:
+       - 'docs/trace_collection.md'
+       options:
+         dest_path: '/tracing/setup_overview/setup/'
+         file_name: 'android.md'
+         front_matters:
+           title: Android Trace Collection
+           kind: documentation
+           beta: true
+           description: "Collect traces from your Android applications."
+           dependencies: ["https://github.com/DataDog/dd-sdk-android/blob/master/docs/trace_collection.md"]
+           further_reading:
+             - link: "https://github.com/DataDog/dd-sdk-android"
+               tag: "Github"
+               text: "dd-sdk-android Source code"
+             - link: "tracing/visualization/"
+               tag: "Documentation"
+               text: "Explore your services, resources and traces"
 
-  # - repo_name: dd-sdk-ios
-  #   contents:
+   - repo_name: dd-sdk-ios
+     contents:
 
-  #   - action: pull-and-push-file
-  #     branch: master
-  #     globs:
-  #     - 'docs/log_collection.md'
-  #     options:
-  #       dest_path: '/logs/log_collection/'
-  #       file_name: 'ios.md'
-  #       front_matters:
-  #         title: iOS Log Collection
-  #         kind: documentation
-  #         description: "Collect logs from your iOS applications."
-  #         dependencies: ["https://github.com/DataDog/dd-sdk-ios/blob/master/docs/log_collection.md"]
-  #         further_reading:
-  #           - link: "https://github.com/DataDog/dd-sdk-ios"
-  #             tag: "Github"
-  #             text: "dd-sdk-ios Source code"
-  #           - link: "logs/explorer"
-  #             tag: "Documentation"
-  #             text: "Learn how to explore your logs"
+     - action: pull-and-push-file
+       branch: master
+       globs:
+       - 'docs/log_collection.md'
+       options:
+         dest_path: '/logs/log_collection/'
+         file_name: 'ios.md'
+         front_matters:
+           title: iOS Log Collection
+           kind: documentation
+           description: "Collect logs from your iOS applications."
+           dependencies: ["https://github.com/DataDog/dd-sdk-ios/blob/master/docs/log_collection.md"]
+           further_reading:
+             - link: "https://github.com/DataDog/dd-sdk-ios"
+               tag: "Github"
+               text: "dd-sdk-ios Source code"
+             - link: "logs/explorer"
+               tag: "Documentation"
+               text: "Learn how to explore your logs"
 
-  #   - action: pull-and-push-file
-  #     branch: master
-  #     globs:
-  #     - 'docs/trace_collection.md'
-  #     options:
-  #       dest_path: '/tracing/setup_overview/setup/'
-  #       file_name: 'ios.md'
-  #       front_matters:
-  #         title: iOS Trace Collection
-  #         kind: documentation
-  #         beta: true
-  #         description: "Collect traces from your iOS applications."
-  #         dependencies: ["https://github.com/DataDog/dd-sdk-ios/blob/master/docs/trace_collection.md"]
-  #         further_reading:
-  #           - link: "https://github.com/DataDog/dd-sdk-ios"
-  #             tag: "Github"
-  #             text: "dd-sdk-ios Source code"
-  #           - link: "tracing/visualization/"
-  #             tag: "Documentation"
-  #             text: "Explore your services, resources and traces"
+     - action: pull-and-push-file
+       branch: master
+       globs:
+       - 'docs/trace_collection.md'
+       options:
+         dest_path: '/tracing/setup_overview/setup/'
+         file_name: 'ios.md'
+         front_matters:
+           title: iOS Trace Collection
+           kind: documentation
+           beta: true
+           description: "Collect traces from your iOS applications."
+           dependencies: ["https://github.com/DataDog/dd-sdk-ios/blob/master/docs/trace_collection.md"]
+           further_reading:
+             - link: "https://github.com/DataDog/dd-sdk-ios"
+               tag: "Github"
+               text: "dd-sdk-ios Source code"
+             - link: "tracing/visualization/"
+               tag: "Documentation"
+               text: "Explore your services, resources and traces"
 
-  #   - action: pull-and-push-file
-  #     branch: master
-  #     globs:
-  #     - 'docs/rum_collection.md'
-  #     options:
-  #       dest_path: '/real_user_monitoring/'
-  #       file_name: 'ios.md'
-  #       front_matters:
-  #         title: iOS RUM Collection
-  #         kind: documentation
-  #         beta: true
-  #         description: "Collect RUM data from your iOS applications."
-  #         dependencies: ["https://github.com/DataDog/dd-sdk-ios/blob/master/docs/rum_collection.md"]
+     - action: pull-and-push-file
+       branch: master
+       globs:
+       - 'docs/rum_collection.md'
+       options:
+         dest_path: '/real_user_monitoring/'
+         file_name: 'ios.md'
+         front_matters:
+           title: iOS RUM Collection
+           kind: documentation
+           beta: true
+           description: "Collect RUM data from your iOS applications."
+           dependencies: ["https://github.com/DataDog/dd-sdk-ios/blob/master/docs/rum_collection.md"]
 
-  # - repo_name: security-monitoring
-  #   contents:
-  #   - action: security-rules
-  #     branch: main
-  #     globs:
-  #       - "security-monitoring/*.json"
-  #       - "security-monitoring/*.md"
-  #     options:
-  #       dest_path: '/security_monitoring/default_rules/'
-  #   - action: compliance-rules
-  #     branch: main
-  #     globs:
-  #       - "configuration/*.json"
-  #       - "configuration/*.yaml"
-  #       - "configuration/*.yml"
-  #       - "configuration/*.md"
-  #       - "runtime/**/*.json"
-  #       - "runtime/**/*.yaml"
-  #       - "runtime/**/*.yml"
-  #       - "runtime/**/*.md"
-  #     options:
-  #       dest_path: '/security_monitoring/default_rules/'
+   - repo_name: security-monitoring
+     contents:
+     - action: security-rules
+       branch: main
+       globs:
+         - "security-monitoring/*.json"
+         - "security-monitoring/*.md"
+       options:
+         dest_path: '/security_monitoring/default_rules/'
+     - action: compliance-rules
+       branch: main
+       globs:
+         - "configuration/*.json"
+         - "configuration/*.yaml"
+         - "configuration/*.yml"
+         - "configuration/*.md"
+         - "runtime/**/*.json"
+         - "runtime/**/*.yaml"
+         - "runtime/**/*.yml"
+         - "runtime/**/*.md"
+       options:
+         dest_path: '/security_monitoring/default_rules/'
