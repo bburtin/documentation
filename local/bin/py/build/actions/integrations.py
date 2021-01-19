@@ -442,7 +442,8 @@ class Integrations:
             else:
                 return file_name
 
-    def remove_section(self, markdown, h2_header_string):
+    @staticmethod
+    def remove_section(markdown, h2_header_string):
         """
         Removes a section from markdown by deleting all content from the given h2_header_string to the next found h2 markdown
         h2_header_string is expected to be in markdown format; e.g. '## Steps'

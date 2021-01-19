@@ -25,6 +25,14 @@ $ddpurple:    #632CA6;
     max-width: 100%;
     height: auto;
   }
+
+  table.table-metrics {
+    tr {
+      td {
+        word-break: break-word;
+      }
+    }
+  }
 }
 
 .filters {
