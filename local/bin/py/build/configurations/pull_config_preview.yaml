@@ -85,8 +85,8 @@
       - "*/README.md"
       - "*/images/*.png"
 
-   - repo_name: ansible-datadog
-     contents:
+  - repo_name: ansible-datadog
+    contents:
 
     - action: pull-and-push-file
       branch: master
