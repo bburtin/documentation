@@ -408,10 +408,11 @@ class Integrations:
             self.data_service_checks_dir + new_file_name,
         )
 
-    # file_name e.g. ./integrations_data/extracted/marketplace/rapdev-snmp-profiles/images/2.png
+    # file_name should be an extracted image file
+    # e.g. ./integrations_data/extracted/marketplace/rapdev-snmp-profiles/images/2.png
     def process_images(self, file_name):
         """
-        Copies a single image file (PNG) to the static/images/ folder, creating a new directory if needed.
+        Copies a single image file to the static/images/ folder, creating a new directory if needed.
         """
         image_filename = basename(file_name) # img.png
         integration_image_path = file_name.replace('../', '') # if it found local marketplace repo
@@ -423,38 +424,36 @@ class Integrations:
         makedirs(destination_directory, exist_ok=True)
         copyfile(file_name, full_destination_path)
 
-    def replace_image_src(self, file_name):
+    @staticmethod
+    def replace_image_src(markdown_string):
         """
-        Takes a markdown file and replaces any image markdown with our img shortcode, pointing to the static/images folder.
-        Returns the markdown file with updated img sources (or the unedited original version if no regex matches were found).
-        This is needed in Marketplace Integrations to show images that have been pulled from a private repo.
+        Takes a markdown string and replaces any image markdown with our img shortcode, pointing to the static/images folder.
+        This is needed when dealing with Marketplace Integrations to properly display images pulled from a private repo.
         """
         markdown_img_search_regex = r"!\[(.*?)\]\((.*?)\)"
+        img_shortcode = "{{< img src=\"\\2\" alt=\"\\1\" >}}"
         integration_img_prefix = 'https://raw.githubusercontent.com/DataDog/marketplace/master/'
 
-        with open(file_name, 'r+') as f:
-            content = f.read()
-            content = content.replace(integration_img_prefix, 'marketplace/')
-            img_shortcode = "{{< img src=\"\\2\" alt=\"\\1\" >}}"
-            regex_result = re.sub(markdown_img_search_regex, img_shortcode, content, 0, re.MULTILINE)
+        replaced_markdown_string = markdown_string.replace(integration_img_prefix, 'marketplace/')
+        regex_result = re.sub(markdown_img_search_regex, img_shortcode, replaced_markdown_string, 0, re.MULTILINE)
 
-            if regex_result:
-                return regex_result
-            else:
-                return file_name
+        if regex_result:
+            return regex_result
+        else:
+            return markdown_string
 
     @staticmethod
-    def remove_section(markdown, h2_header_string):
+    def remove_markdown_section(markdown_string, h2_header_string):
         """
-        Removes a section from markdown by deleting all content from the given h2_header_string to the next found h2 markdown
-        h2_header_string is expected to be in markdown format; e.g. '## Steps'
+        Removes a section from markdown by deleting all content starting from provided h2_header_string argument and ending one index before the next h2 header.
+        h2_header_string argument is expected in markdown format; e.g. '## Steps'
         """
 
         if not h2_header_string.startswith('##'):
-            return
+            return markdown_string
 
         h2_markdown_regex = r"(^|\n)(#{2}) (\w+)"
-        h2_list = re.finditer(h2_markdown_regex, markdown)
+        h2_list = re.finditer(h2_markdown_regex, markdown_string)
         replaced_result = ''
 
         for match in h2_list:
@@ -465,13 +464,23 @@ class Integrations:
             if h2_header_string in group:
                 start_index = start
                 end_index = next(h2_list).start()
-                content_to_remove = markdown[start_index:end_index]
-                replaced_result = markdown.replace(content_to_remove, '')
+                content_to_remove = markdown_string[start_index:end_index]
+                replaced_result = markdown_string.replace(content_to_remove, '')
 
         if replaced_result:
             return replaced_result
         else:
-            return markdown
+            return markdown_string
+
+    @staticmethod
+    def validate_marketplace_integration_markdown(markdown_string):
+        """
+        Validates marketplace integration markdown string.  Returns true if the markdown string does not contain any headers
+        containing "Setup" or "Pricing" as we should not display these in Docs.
+        """
+        setup_header_markdown_regex = r"(#{1,6})(.Setup|.Pricing)"
+        matches = re.search(setup_header_markdown_regex, markdown_string)
+        return matches == None
 
     def process_integration_readme(self, file_name, marketplace=False):
         """
@@ -546,11 +555,17 @@ class Integrations:
             except Exception as e:
                 print(e)
         else:
-            # markdown_with_replaced_images = self.replace_image_src(file_name)
-            # result = self.remove_section(markdown_with_replaced_images, '## Setup')
-        
-            # Comment this in before publishing preview (until Pricing and Setup pieces are removed successfully)
-            result = file_name
+            with open(file_name, 'r+') as f:
+                markdown_string = f.read()
+                markdown_with_replaced_images = self.replace_image_src(markdown_string)
+                updated_markdown = self.remove_markdown_section(markdown_with_replaced_images, '## Setup')
+                is_marketplace_integration_markdown_valid = self.validate_marketplace_integration_markdown(updated_markdown)
+
+                if not is_marketplace_integration_markdown_valid:
+                    raise Exception('Potential setup or pricing information included in Marketplace Integration markdown.  Check {} for Setup or Pricing sections.'.format(file_name))
+                else:
+                    # result = file_name
+                    result = updated_markdown
 
         ## Check if there is a integration tab logic in the integration file:
         if "<!-- xxx tabs xxx -->" in result:

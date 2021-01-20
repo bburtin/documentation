@@ -4,12 +4,16 @@ from integrations import Integrations
 
 class TestMarketplaceIntegrations(unittest.TestCase):
     def test_image_src_replaced_by_shortcode(self):
-      ## assert that a search of the regex pattern doesn't return any results
-      ## instead we should find a shortcode pattern somewhere in the generated markdown
+      markdown_img_search_regex = r"!\[(.*?)\]\((.*?)\)"
+      img_shortcode_regex = r"({{2}< img)(.*)(>}{2})"
+      test_markdown_string = ("## Test\n\n"
+        "![TestScreenshot](/fake/path/to/images/1.png)\n\n"
+        "### EndTest")
 
-      ## markdown_img_search_regex = r"!\[(.*?)\]\((.*?)\)"
+      result = Integrations.replace_image_src(test_markdown_string)
 
-      self.assertEqual('test'.upper(), 'TEST')
+      self.assertNotRegex(result, markdown_img_search_regex)
+      self.assertRegex(result, img_shortcode_regex)
 
     def test_section_removed_from_markdown(self):
       header_string = '## Setup'
@@ -21,7 +25,8 @@ class TestMarketplaceIntegrations(unittest.TestCase):
         "### This too\n\n"
         "## This should not be removed")
 
-      result = Integrations.remove_section(test_markdown_string, header_string)
+      result = Integrations.remove_markdown_section(test_markdown_string, header_string)
+
       self.assertNotIn(header_string, result)
       self.assertIn('## This should not be removed', result)
 
