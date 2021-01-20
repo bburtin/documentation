@@ -558,14 +558,14 @@ class Integrations:
             with open(file_name, 'r+') as f:
                 markdown_string = f.read()
                 markdown_with_replaced_images = self.replace_image_src(markdown_string)
-                updated_markdown = self.remove_markdown_section(markdown_with_replaced_images, '## Setup')
+                updated_markdown = self.remove_markdown_section(markdown_with_replaced_images, '## Test')
                 is_marketplace_integration_markdown_valid = self.validate_marketplace_integration_markdown(updated_markdown)
 
                 if not is_marketplace_integration_markdown_valid:
                     raise Exception('Potential setup or pricing information included in Marketplace Integration markdown.  Check {} for Setup or Pricing sections.'.format(file_name))
                 else:
-                    # result = file_name
-                    result = updated_markdown
+                    result = file_name
+                    # result = updated_markdown
 
         ## Check if there is a integration tab logic in the integration file:
         if "<!-- xxx tabs xxx -->" in result:
