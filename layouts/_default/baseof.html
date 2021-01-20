@@ -73,9 +73,11 @@
           {{ end }}
         </select>
       </div> */}}
-      
-      {{ partial "region-lang-selectors.html" . }}
-      {{ partial "table-of-contents/table-of-contents.html" . }}
+
+      <div class="sidebar">
+        {{ partial "region-lang-selectors.html" . }}
+        {{ partial "table-of-contents/table-of-contents.html" . }}
+      </div>
 
     </div>
   </div>
