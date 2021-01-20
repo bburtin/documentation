@@ -414,7 +414,8 @@ class Integrations:
         Copies a single image file (PNG) to the static/images/ folder, creating a new directory if needed.
         """
         image_filename = basename(file_name) # img.png
-        integration_image_path = file_name.replace('./integrations_data/extracted/', '') # marketplace/nerdvision/images/img.png
+        integration_image_path = file_name.replace('../', '') # if it found local marketplace repo
+        integration_image_path = integration_image_path.replace('./integrations_data/extracted/', '') # marketplace/nerdvision/images/img.png
         integration_image_directory = dirname(integration_image_path) # marketplace/nerdvision/images/
         destination_directory = './static/images/{}'.format(integration_image_directory) # static/images/marketplace/nerdvision/images/
         full_destination_path = '{}/{}'.format(destination_directory, image_filename) # static/images/marketplace/nerdvision/images/img.png
