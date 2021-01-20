@@ -228,7 +228,7 @@ class Integrations:
             elif file_name.endswith(".md"):
                 self.process_integration_readme(file_name, marketplace)
 
-            elif file_name.endswith(".png") and marketplace:
+            elif file_name.endswith((".png", ".svg", ".jpg", ".jpeg", ".gif")) and marketplace:
                 self.process_images(file_name)
 
     def merge_integrations(self):
@@ -451,7 +451,7 @@ class Integrations:
 
         if not h2_header_string.startswith('##'):
             return
-    
+
         h2_markdown_regex = r"(^|\n)(#{2}) (\w+)"
         h2_list = re.finditer(h2_markdown_regex, markdown)
         replaced_result = ''
