@@ -10,7 +10,9 @@ aliases:
 
 {{< whatsnext desc="This section includes the following topics:">}}
     {{< nextlink href="/metrics/introduction" >}}<u>Metrics Introduction</u> - Learn about data, aggregation, and graphing metrics.{{< /nextlink >}}
-    {{< nextlink href="/metrics/advanced-filtering" >}}<u>Advanced Filtering</u> - Filter your data to narrow the scope of metrics returned.{{< /nextlink >}}
+    {{< nextlink href="/metrics/explorer" >}}<u>Metrics Explorer</u> - Explore all of your metrics and perform Analytics.{{< /nextlink >}}
+    {{< nextlink href="/developers/metrics/types" >}}<u>Metrics Types</u> - Types of metrics that can be submitted to Datadog.{{< /nextlink >}}
+    {{< nextlink href="/metrics/summary" >}}<u>Metrics Summary</u> - Consult the full list of metrics reporting to Datadog.{{< /nextlink >}}
 {{< /whatsnext >}}
 
 ### What are metrics?
@@ -19,7 +21,7 @@ Metrics are numerical values that can track anything about your environment over
 
 ### Why are metrics useful?
 
-Metrics provide an overall picture of your system. You can use them to assess the health of your environment at a glance---how quickly users are loading your website or the average memory consumption of your servers, for instance. Once you identify a problem, you can use [logs][1] and [tracing][2] to locate the exact source of the issue.
+Metrics provide an overall picture of your system. You can use them to assess the health of your environment at a glance---how quickly users are loading your website or the average memory consumption of your servers, for instance. Once you identify a problem, you can use [logs][1] and [tracing][2] to further troubleshoot.
 
 Metrics that track system health come automatically through our integrations with 400+ services. However, you can also track metrics that are specific to your business---also known as custom metrics---from the number of user logins to user cart sizes to the frequency of your team’s code commits.
 
@@ -41,9 +43,9 @@ Datadog has many other types of graphs and widgets for visualizations. You can l
 
 Metrics can be sent to Datadog from several places.
 
-- [Datadog-Supported Integrations][7]: Metrics sent from one of our {{< translate key="integration_count" >}}+ integrations are included with your infrastructure plan. To set up metrics from external integrations, navigate to the specific page for your service and follow the installation instructions there. If you need to monitor an EC2 instance, for example, you would go to [this page][8].
+- [Datadog-Supported Integrations][7]: Our {{< translate key="integration_count" >}}+ integrations include metrics out of the box. To access these metrics, navigate to the specific integration page for your service and follow the installation instructions there. If you need to monitor an EC2 instance, for example, you would go to [this page][8].
 
-- Many of our products generate metrics directly. For instance, you can count error status codes appearing in your logs and [store that as a new metric][9] in Datadog.
+- You can generate metrics directly within the Datadog platform. For instance, you can count error status codes appearing in your logs and [store that as a new metric][9] in Datadog.
 
 - Often, you’ll need to track metrics related to your business (e.g. number of user logins/signups). In these cases, you can create [custom metrics][10]. Custom metrics can be submitted through the [agent][11], [DogStatsD][12], or the [HTTP API][13].
 
@@ -51,7 +53,7 @@ For a summary of all metric submission sources and methods, please refer to our 
 
 ## Querying Metrics
 
-Whether you are using metrics, monitors, dashboards, notebooks, etc., all graphs in Datadog have the same basic functionality. You can create graphs either by using the graphing editor UI or by directly changing the raw query string. To edit the query string, hit the `</>` button on the far right.
+The graphing experience is consistent whether you are using dashboards, notebooks, or monitors. You can create graphs either by using the graphing editor UI or by directly changing the raw query string. To edit the query string, hit the `</>` button on the far right.
 
 ### Breaking Down the Metric Query
 
@@ -63,17 +65,17 @@ We can break this query into a few steps:
 
 #### 1. Metric name
 
-First, choose the specific metric that you’d like to graph by searching or selecting it from the dropdown next to Metric. If you’re not sure which metric to use, start with the Metrics Explorer or a notebook. You can also see a list of metrics on the Metrics Summary page.
+First, choose the specific metric that you’d like to graph by searching or selecting it from the dropdown next to Metric. If you’re not sure which metric to use, start with the Metrics Explorer or a notebook. You can also see a list of actively reporting metrics on the Metrics Summary page.
 
 #### 2. Filter your metric
 
 After selecting a metric, you can filter your query based on tag(s). For instance, you can use `account:prod` to _scope_ your query to include only the metrics from your production hosts. For more information, please refer to our [Tagging][15] documentation.
 
-#### 3. Configure Time
+#### 3. Time Aggregation Configuration
 
 Next, choose the granularity of your data using time rollup. In this example, we’ve defined that there will be one data point for every six minutes (360 seconds). You can also choose how you want to aggregate the data in each time bucket. By default, _avg_ is applied, but other available options are _sum_, _min_, _max_, and _count_. If you wanted to apply max, you would use `.rollup(max, 60)`.
 
-#### 4. Configure Space
+#### 4. Space Aggregation Configuration
 
 In Datadog, “space” refers to the way metrics are distributed over different hosts and tags. There are two different aspects of space that you can control: grouping and aggregation.
 
@@ -95,7 +97,7 @@ Datadog stores a large volume of points, and in most cases it’s not possible t
 
 There are five aggregations you can apply to combine your data in each time bucket: sum, min, max, avg, and count.
 
-It’s important to remember that time aggregation is _always_ applied in every query you make because we can’t display every point we store.
+It’s important to remember that time aggregation is _always_ applied in every query you make.
 
 #### Space Aggregation
 
@@ -107,7 +109,7 @@ There are four aggregations that can be applied when using space aggregation: _s
 
 ### What metric types can I submit to Datadog?
 
-Datadog supports several different metric types that serve distinct use cases: count, gauge, rate, histogram, and distribution.
+Datadog supports several different metric types that serve distinct use cases: count, gauge, rate, histogram, and distribution. Metric types determine which graphs and functions are available to use with the metric in the app. 
 
 ### What’s the difference between each metric type?
 
@@ -123,17 +125,13 @@ A **_histogram_** will report five different values summarizing the submitted va
 
 A **_distribution_** is similar to a histogram, but it summarizes values submitted during a time interval across all hosts in your environment. You can also choose to report multiple percentiles: p50, p75, p90, p95, and p99. You can learn more about this powerful feature [here][17].
 
-To make this concrete with an example, suppose your host reported metric values of [1,1,1,2,2,2,3,3] during a ten-second interval. Depending on the metric type you chose, Datadog would store completely different values:
-
-_Count_ would add them up and send the value 15 over to our servers, while _rate_ would take the total sum and divide it by 10 seconds to report a value of 1.5. _Gauge_ would simply report the last value, 3. If your metric is a _histogram_, Datadog would receive five different values: avg = 1.88, count = 8, median = 2, p95 = 3, max = 3.
-
-Metric types also determine which graphs and functions are available to use with the metric in the app. Please see the [metrics types][14] documentation for more detailed examples of each metric type and submission instructions.
+Please see the [metrics types][14] documentation for more detailed examples of each metric type and submission instructions.
 
 ### How do I view real-time information about my metrics?
 
 The [Metrics Summary page][18] displays a list of your metrics reported to Datadog under a specified time frame: the past hour, day, or week. Metrics can be filtered by metric name or tag.
 
-Click on any metric name to display a sidepanel with more detailed information. The metric panel displays key information for a given metric, including its metadata (type, unit, interval), number of distinct metrics, number of reporting hosts, number of tags submitted, and a table containing all tags submitted on a metric. Seeing which tags are being submitted on a metric helps you understand the number of distinct metrics reporting from it, since this number depends on your tag value combinations.
+Click on any metric name to display a details sidepanel with more detailed information. The details sidepanel displays key information for a given metric, including its metadata (type, unit, interval), number of distinct metrics, number of reporting hosts, number of tags submitted, and a table containing all tags submitted on a metric. Seeing which tags are being submitted on a metric helps you understand the number of distinct metrics reporting from it, since this number depends on your tag value combinations.
 
 Note: The number of distinct metrics reported in the details sidepanel on Metrics Summary does not define your bill. Please see your [usage details][19] for a precise accounting of your usage over the past month.
 
@@ -142,9 +140,7 @@ Please see the [full Metrics Summary documentation][20] for more details.
 ## Further reading
 
 {{< whatsnext desc="To continue with metrics, check out:">}}
-    {{< nextlink href="/metrics/explorer" >}}<u>Metrics Explorer</u> - Explore all of your metrics and perform Analytics.{{< /nextlink >}}
-    {{< nextlink href="/metrics/summary" >}}<u>Metrics Summary</u> - Consult the full list of metrics reporting to Datadog.{{< /nextlink >}}
-    {{< nextlink href="/developers/metrics/types" >}}<u>Metrics Types</u> - Types of metrics that can be submitted to Datadog.{{< /nextlink >}}
+    {{< nextlink href="/metrics/advanced-filtering" >}}<u>Advanced Filtering</u> - Filter your data to narrow the scope of metrics returned.{{< /nextlink >}}
     {{< nextlink href="/metrics/distributions" >}}<u>Distribution metrics</u> - Compute global percentiles across your entire dataset.{{< /nextlink >}}
 {{< /whatsnext >}}
 
@@ -161,8 +157,8 @@ Please see the [full Metrics Summary documentation][20] for more details.
 [11]: /agent/
 [12]: /developers/metrics/dogstatsd_metrics_submission/
 [13]: /api/
-[14]: /developers/metrics/types/
-[15]: /getting_started/tagging/using_tags/
+[14]: /developers/metrics/types/?tab=count#submission-types-and-datadog-in-app-types
+[15]: /getting_started/tagging/using_tags/?tab=assignment#dashboards
 [16]: /dashboards/functions/
 [17]: /metrics/distributions/
 [18]: https://app.datadoghq.com/metric/summary
