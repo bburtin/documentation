@@ -475,7 +475,7 @@ class Integrations:
     @staticmethod
     def validate_marketplace_integration_markdown(markdown_string):
         """
-        Validates marketplace integration markdown string does not contain sensitive content.  
+        Validates marketplace integration markdown string does not contain sensitive content.
         The build should fail if we found any sections that should not be displayed in Docs.
         Current exclude list: ["Setup", "Pricing", "Tiered Pricing"]
         """
@@ -565,8 +565,7 @@ class Integrations:
                 if not is_marketplace_integration_markdown_valid:
                     raise Exception('Potential setup or pricing information included in Marketplace Integration markdown.  Check {} for Setup or Pricing sections.'.format(file_name))
                 else:
-                    result = file_name
-                    # result = updated_markdown
+                    result = updated_markdown
 
         ## Check if there is a integration tab logic in the integration file:
         if "<!-- xxx tabs xxx -->" in result:
