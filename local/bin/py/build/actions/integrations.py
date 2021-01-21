@@ -475,11 +475,12 @@ class Integrations:
     @staticmethod
     def validate_marketplace_integration_markdown(markdown_string):
         """
-        Validates marketplace integration markdown string.  Returns true if the markdown string does not contain any headers
-        containing "Setup" or "Pricing" as we should not display these in Docs.
+        Validates marketplace integration markdown string does not contain sensitive content.  
+        The build should fail if we found any sections that should not be displayed in Docs.
+        Current exclude list: ["Setup", "Pricing", "Tiered Pricing"]
         """
-        setup_header_markdown_regex = r"(#{1,6})(.Setup|.Pricing)"
-        matches = re.search(setup_header_markdown_regex, markdown_string)
+        setup_header_markdown_regex = r"(#{1,6})(\s*)(Setup|Pricing|Tiered Pricing)"
+        matches = re.search(setup_header_markdown_regex, markdown_string, re.MULTILINE | re.IGNORECASE)
         return matches == None
 
     def process_integration_readme(self, file_name, marketplace=False):
