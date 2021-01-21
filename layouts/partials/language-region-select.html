@@ -1,8 +1,8 @@
-<div class="region-lang-selector-container d-flex flex-lg-column">
-  <div class="lang-select-container">
+<div class="language-region-select-container d-flex flex-lg-column">
+  <div class="language-select-container">
     <p class="text-uppercase">Language</p>
-    <div class="dropdown js-lang-selector">
-      <button class="btn d-flex align-items-center justify-content-between" type="button" id="langSelectorButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <div class="dropdown">
+      <button class="btn d-flex align-items-center justify-content-between" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         {{ .Language.LanguageName }}
         <div class="chevron chevron-down"></div>
         <div class="chevron chevron-up d-none"></div>
@@ -24,16 +24,15 @@
 
   <div class="region-select-container">
     <p class="text-uppercase">Site</p>
-
-    <div class="dropdown js-region-selector">
-      <button class="btn d-flex align-items-center justify-content-between" type="button" id="regionSelectorButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <div class="dropdown js-region-select">
+      <button class="btn d-flex align-items-center justify-content-between" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         Test
         <div class="chevron chevron-down"></div>
         <div class="chevron chevron-up d-none"></div>
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
         {{ range sort .Site.Params.allowedRegions ".name" "desc" }}
-          <a class="dropdown-item">{{ .name }}</a>
+          <a class="dropdown-item" data-value="{{ .value }}">{{ .name }}</a>
         {{ end }}
       </div>
     </div>
