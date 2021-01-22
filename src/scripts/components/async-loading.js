@@ -3,7 +3,7 @@ import codeTabs from './codetabs';
 import { redirectToRegion } from '../region-redirects';
 import { initializeIntegrations } from './integrations';
 import { initializeSecurityRules } from './security-rules';
-import {updateMainContentAnchors, reloadWistiaVidScripts, gtag } from '../helpers/helpers';
+import {updateMainContentAnchors, reloadWistiaVidScripts, gtag, getCookieByName } from '../helpers/helpers';
 import configDocs from '../config/config-docs';
 import {redirectCodeLang, addCodeTabEventListeners, activateCodeLangNav} from './code-languages'; // eslint-disable-line import/no-cycle
 
@@ -165,9 +165,11 @@ function loadPage(newUrl) {
 
             codeTabs();
 
-            const regionSelector = document.querySelector('.js-region-selector');
+            const regionSelector = document.querySelector('.js-region-select');
+
             if (regionSelector) {
-                redirectToRegion(regionSelector.value);
+                const region = getCookieByName('site');
+                redirectToRegion(region);
             }
 
             const {pageCodeLang} = document.documentElement.dataset;
