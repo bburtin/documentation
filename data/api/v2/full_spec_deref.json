@@ -20753,6 +20753,18 @@
                 "options": {
                   "description": "Options on rules.",
                   "properties": {
+                    "detectionMethod": {
+                      "description": "The detection method.",
+                      "enum": [
+                        "threshold",
+                        "new_value"
+                      ],
+                      "type": "string",
+                      "x-enum-varnames": [
+                        "THRESHOLD",
+                        "NEW_VALUE"
+                      ]
+                    },
                     "evaluationWindow": {
                       "description": "A time window is specified to match when at least one of the cases matches true. This is a sliding window\nand evaluates in real time.",
                       "enum": [
@@ -20839,6 +20851,48 @@
                         "TWELVE_HOURS",
                         "ONE_DAY"
                       ]
+                    },
+                    "newValueOptions": {
+                      "description": "Options on new value rules.",
+                      "properties": {
+                        "forgetAfter": {
+                          "description": "The duration in days after which a learned value is forgotten.",
+                          "enum": [
+                            1,
+                            2,
+                            7,
+                            14,
+                            21,
+                            28
+                          ],
+                          "format": "int32",
+                          "type": "integer",
+                          "x-enum-varnames": [
+                            "ONE_DAY",
+                            "TWO_DAYS",
+                            "ONE_WEEK",
+                            "TWO_WEEKS",
+                            "THREE_WEEKS",
+                            "FOUR_WEEKS"
+                          ]
+                        },
+                        "learningDuration": {
+                          "description": "The duration in days during which values are learned, and after which signals will be generated for values that\nweren't learned. If set to 0, a signal will be generated for all new values after the first value is learned.",
+                          "enum": [
+                            0,
+                            1,
+                            7
+                          ],
+                          "format": "int32",
+                          "type": "integer",
+                          "x-enum-varnames": [
+                            "ZERO_DAYS",
+                            "ONE_DAY",
+                            "SEVEN_DAYS"
+                          ]
+                        }
+                      },
+                      "type": "object"
                     }
                   },
                   "type": "object"
@@ -21117,6 +21171,18 @@
           "options": {
             "description": "Options on rules.",
             "properties": {
+              "detectionMethod": {
+                "description": "The detection method.",
+                "enum": [
+                  "threshold",
+                  "new_value"
+                ],
+                "type": "string",
+                "x-enum-varnames": [
+                  "THRESHOLD",
+                  "NEW_VALUE"
+                ]
+              },
               "evaluationWindow": {
                 "description": "A time window is specified to match when at least one of the cases matches true. This is a sliding window\nand evaluates in real time.",
                 "enum": [
@@ -21203,6 +21269,48 @@
                   "TWELVE_HOURS",
                   "ONE_DAY"
                 ]
+              },
+              "newValueOptions": {
+                "description": "Options on new value rules.",
+                "properties": {
+                  "forgetAfter": {
+                    "description": "The duration in days after which a learned value is forgotten.",
+                    "enum": [
+                      1,
+                      2,
+                      7,
+                      14,
+                      21,
+                      28
+                    ],
+                    "format": "int32",
+                    "type": "integer",
+                    "x-enum-varnames": [
+                      "ONE_DAY",
+                      "TWO_DAYS",
+                      "ONE_WEEK",
+                      "TWO_WEEKS",
+                      "THREE_WEEKS",
+                      "FOUR_WEEKS"
+                    ]
+                  },
+                  "learningDuration": {
+                    "description": "The duration in days during which values are learned, and after which signals will be generated for values that\nweren't learned. If set to 0, a signal will be generated for all new values after the first value is learned.",
+                    "enum": [
+                      0,
+                      1,
+                      7
+                    ],
+                    "format": "int32",
+                    "type": "integer",
+                    "x-enum-varnames": [
+                      "ZERO_DAYS",
+                      "ONE_DAY",
+                      "SEVEN_DAYS"
+                    ]
+                  }
+                },
+                "type": "object"
               }
             },
             "type": "object"
@@ -21288,6 +21396,18 @@
           "message"
         ],
         "type": "object"
+      },
+      "SecurityMonitoringRuleDetectionMethod": {
+        "description": "The detection method.",
+        "enum": [
+          "threshold",
+          "new_value"
+        ],
+        "type": "string",
+        "x-enum-varnames": [
+          "THRESHOLD",
+          "NEW_VALUE"
+        ]
       },
       "SecurityMonitoringRuleEvaluationWindow": {
         "description": "A time window is specified to match when at least one of the cases matches true. This is a sliding window\nand evaluates in real time.",
@@ -21376,9 +21496,99 @@
           "ONE_DAY"
         ]
       },
+      "SecurityMonitoringRuleNewValueOptions": {
+        "description": "Options on new value rules.",
+        "properties": {
+          "forgetAfter": {
+            "description": "The duration in days after which a learned value is forgotten.",
+            "enum": [
+              1,
+              2,
+              7,
+              14,
+              21,
+              28
+            ],
+            "format": "int32",
+            "type": "integer",
+            "x-enum-varnames": [
+              "ONE_DAY",
+              "TWO_DAYS",
+              "ONE_WEEK",
+              "TWO_WEEKS",
+              "THREE_WEEKS",
+              "FOUR_WEEKS"
+            ]
+          },
+          "learningDuration": {
+            "description": "The duration in days during which values are learned, and after which signals will be generated for values that\nweren't learned. If set to 0, a signal will be generated for all new values after the first value is learned.",
+            "enum": [
+              0,
+              1,
+              7
+            ],
+            "format": "int32",
+            "type": "integer",
+            "x-enum-varnames": [
+              "ZERO_DAYS",
+              "ONE_DAY",
+              "SEVEN_DAYS"
+            ]
+          }
+        },
+        "type": "object"
+      },
+      "SecurityMonitoringRuleNewValueOptionsForgetAfter": {
+        "description": "The duration in days after which a learned value is forgotten.",
+        "enum": [
+          1,
+          2,
+          7,
+          14,
+          21,
+          28
+        ],
+        "format": "int32",
+        "type": "integer",
+        "x-enum-varnames": [
+          "ONE_DAY",
+          "TWO_DAYS",
+          "ONE_WEEK",
+          "TWO_WEEKS",
+          "THREE_WEEKS",
+          "FOUR_WEEKS"
+        ]
+      },
+      "SecurityMonitoringRuleNewValueOptionsLearningDuration": {
+        "description": "The duration in days during which values are learned, and after which signals will be generated for values that\nweren't learned. If set to 0, a signal will be generated for all new values after the first value is learned.",
+        "enum": [
+          0,
+          1,
+          7
+        ],
+        "format": "int32",
+        "type": "integer",
+        "x-enum-varnames": [
+          "ZERO_DAYS",
+          "ONE_DAY",
+          "SEVEN_DAYS"
+        ]
+      },
       "SecurityMonitoringRuleOptions": {
         "description": "Options on rules.",
         "properties": {
+          "detectionMethod": {
+            "description": "The detection method.",
+            "enum": [
+              "threshold",
+              "new_value"
+            ],
+            "type": "string",
+            "x-enum-varnames": [
+              "THRESHOLD",
+              "NEW_VALUE"
+            ]
+          },
           "evaluationWindow": {
             "description": "A time window is specified to match when at least one of the cases matches true. This is a sliding window\nand evaluates in real time.",
             "enum": [
@@ -21465,6 +21675,48 @@
               "TWELVE_HOURS",
               "ONE_DAY"
             ]
+          },
+          "newValueOptions": {
+            "description": "Options on new value rules.",
+            "properties": {
+              "forgetAfter": {
+                "description": "The duration in days after which a learned value is forgotten.",
+                "enum": [
+                  1,
+                  2,
+                  7,
+                  14,
+                  21,
+                  28
+                ],
+                "format": "int32",
+                "type": "integer",
+                "x-enum-varnames": [
+                  "ONE_DAY",
+                  "TWO_DAYS",
+                  "ONE_WEEK",
+                  "TWO_WEEKS",
+                  "THREE_WEEKS",
+                  "FOUR_WEEKS"
+                ]
+              },
+              "learningDuration": {
+                "description": "The duration in days during which values are learned, and after which signals will be generated for values that\nweren't learned. If set to 0, a signal will be generated for all new values after the first value is learned.",
+                "enum": [
+                  0,
+                  1,
+                  7
+                ],
+                "format": "int32",
+                "type": "integer",
+                "x-enum-varnames": [
+                  "ZERO_DAYS",
+                  "ONE_DAY",
+                  "SEVEN_DAYS"
+                ]
+              }
+            },
+            "type": "object"
           }
         },
         "type": "object"
@@ -21699,6 +21951,18 @@
           "options": {
             "description": "Options on rules.",
             "properties": {
+              "detectionMethod": {
+                "description": "The detection method.",
+                "enum": [
+                  "threshold",
+                  "new_value"
+                ],
+                "type": "string",
+                "x-enum-varnames": [
+                  "THRESHOLD",
+                  "NEW_VALUE"
+                ]
+              },
               "evaluationWindow": {
                 "description": "A time window is specified to match when at least one of the cases matches true. This is a sliding window\nand evaluates in real time.",
                 "enum": [
@@ -21785,6 +22049,48 @@
                   "TWELVE_HOURS",
                   "ONE_DAY"
                 ]
+              },
+              "newValueOptions": {
+                "description": "Options on new value rules.",
+                "properties": {
+                  "forgetAfter": {
+                    "description": "The duration in days after which a learned value is forgotten.",
+                    "enum": [
+                      1,
+                      2,
+                      7,
+                      14,
+                      21,
+                      28
+                    ],
+                    "format": "int32",
+                    "type": "integer",
+                    "x-enum-varnames": [
+                      "ONE_DAY",
+                      "TWO_DAYS",
+                      "ONE_WEEK",
+                      "TWO_WEEKS",
+                      "THREE_WEEKS",
+                      "FOUR_WEEKS"
+                    ]
+                  },
+                  "learningDuration": {
+                    "description": "The duration in days during which values are learned, and after which signals will be generated for values that\nweren't learned. If set to 0, a signal will be generated for all new values after the first value is learned.",
+                    "enum": [
+                      0,
+                      1,
+                      7
+                    ],
+                    "format": "int32",
+                    "type": "integer",
+                    "x-enum-varnames": [
+                      "ZERO_DAYS",
+                      "ONE_DAY",
+                      "SEVEN_DAYS"
+                    ]
+                  }
+                },
+                "type": "object"
               }
             },
             "type": "object"
@@ -21964,6 +22270,18 @@
           "options": {
             "description": "Options on rules.",
             "properties": {
+              "detectionMethod": {
+                "description": "The detection method.",
+                "enum": [
+                  "threshold",
+                  "new_value"
+                ],
+                "type": "string",
+                "x-enum-varnames": [
+                  "THRESHOLD",
+                  "NEW_VALUE"
+                ]
+              },
               "evaluationWindow": {
                 "description": "A time window is specified to match when at least one of the cases matches true. This is a sliding window\nand evaluates in real time.",
                 "enum": [
@@ -22050,6 +22368,48 @@
                   "TWELVE_HOURS",
                   "ONE_DAY"
                 ]
+              },
+              "newValueOptions": {
+                "description": "Options on new value rules.",
+                "properties": {
+                  "forgetAfter": {
+                    "description": "The duration in days after which a learned value is forgotten.",
+                    "enum": [
+                      1,
+                      2,
+                      7,
+                      14,
+                      21,
+                      28
+                    ],
+                    "format": "int32",
+                    "type": "integer",
+                    "x-enum-varnames": [
+                      "ONE_DAY",
+                      "TWO_DAYS",
+                      "ONE_WEEK",
+                      "TWO_WEEKS",
+                      "THREE_WEEKS",
+                      "FOUR_WEEKS"
+                    ]
+                  },
+                  "learningDuration": {
+                    "description": "The duration in days during which values are learned, and after which signals will be generated for values that\nweren't learned. If set to 0, a signal will be generated for all new values after the first value is learned.",
+                    "enum": [
+                      0,
+                      1,
+                      7
+                    ],
+                    "format": "int32",
+                    "type": "integer",
+                    "x-enum-varnames": [
+                      "ZERO_DAYS",
+                      "ONE_DAY",
+                      "SEVEN_DAYS"
+                    ]
+                  }
+                },
+                "type": "object"
               }
             },
             "type": "object"
@@ -46346,6 +46706,18 @@
                           "options": {
                             "description": "Options on rules.",
                             "properties": {
+                              "detectionMethod": {
+                                "description": "The detection method.",
+                                "enum": [
+                                  "threshold",
+                                  "new_value"
+                                ],
+                                "type": "string",
+                                "x-enum-varnames": [
+                                  "THRESHOLD",
+                                  "NEW_VALUE"
+                                ]
+                              },
                               "evaluationWindow": {
                                 "description": "A time window is specified to match when at least one of the cases matches true. This is a sliding window\nand evaluates in real time.",
                                 "enum": [
@@ -46432,6 +46804,48 @@
                                   "TWELVE_HOURS",
                                   "ONE_DAY"
                                 ]
+                              },
+                              "newValueOptions": {
+                                "description": "Options on new value rules.",
+                                "properties": {
+                                  "forgetAfter": {
+                                    "description": "The duration in days after which a learned value is forgotten.",
+                                    "enum": [
+                                      1,
+                                      2,
+                                      7,
+                                      14,
+                                      21,
+                                      28
+                                    ],
+                                    "format": "int32",
+                                    "type": "integer",
+                                    "x-enum-varnames": [
+                                      "ONE_DAY",
+                                      "TWO_DAYS",
+                                      "ONE_WEEK",
+                                      "TWO_WEEKS",
+                                      "THREE_WEEKS",
+                                      "FOUR_WEEKS"
+                                    ]
+                                  },
+                                  "learningDuration": {
+                                    "description": "The duration in days during which values are learned, and after which signals will be generated for values that\nweren't learned. If set to 0, a signal will be generated for all new values after the first value is learned.",
+                                    "enum": [
+                                      0,
+                                      1,
+                                      7
+                                    ],
+                                    "format": "int32",
+                                    "type": "integer",
+                                    "x-enum-varnames": [
+                                      "ZERO_DAYS",
+                                      "ONE_DAY",
+                                      "SEVEN_DAYS"
+                                    ]
+                                  }
+                                },
+                                "type": "object"
                               }
                             },
                             "type": "object"
@@ -46671,6 +47085,18 @@
                   "options": {
                     "description": "Options on rules.",
                     "properties": {
+                      "detectionMethod": {
+                        "description": "The detection method.",
+                        "enum": [
+                          "threshold",
+                          "new_value"
+                        ],
+                        "type": "string",
+                        "x-enum-varnames": [
+                          "THRESHOLD",
+                          "NEW_VALUE"
+                        ]
+                      },
                       "evaluationWindow": {
                         "description": "A time window is specified to match when at least one of the cases matches true. This is a sliding window\nand evaluates in real time.",
                         "enum": [
@@ -46757,6 +47183,48 @@
                           "TWELVE_HOURS",
                           "ONE_DAY"
                         ]
+                      },
+                      "newValueOptions": {
+                        "description": "Options on new value rules.",
+                        "properties": {
+                          "forgetAfter": {
+                            "description": "The duration in days after which a learned value is forgotten.",
+                            "enum": [
+                              1,
+                              2,
+                              7,
+                              14,
+                              21,
+                              28
+                            ],
+                            "format": "int32",
+                            "type": "integer",
+                            "x-enum-varnames": [
+                              "ONE_DAY",
+                              "TWO_DAYS",
+                              "ONE_WEEK",
+                              "TWO_WEEKS",
+                              "THREE_WEEKS",
+                              "FOUR_WEEKS"
+                            ]
+                          },
+                          "learningDuration": {
+                            "description": "The duration in days during which values are learned, and after which signals will be generated for values that\nweren't learned. If set to 0, a signal will be generated for all new values after the first value is learned.",
+                            "enum": [
+                              0,
+                              1,
+                              7
+                            ],
+                            "format": "int32",
+                            "type": "integer",
+                            "x-enum-varnames": [
+                              "ZERO_DAYS",
+                              "ONE_DAY",
+                              "SEVEN_DAYS"
+                            ]
+                          }
+                        },
+                        "type": "object"
                       }
                     },
                     "type": "object"
@@ -46961,6 +47429,18 @@
                     "options": {
                       "description": "Options on rules.",
                       "properties": {
+                        "detectionMethod": {
+                          "description": "The detection method.",
+                          "enum": [
+                            "threshold",
+                            "new_value"
+                          ],
+                          "type": "string",
+                          "x-enum-varnames": [
+                            "THRESHOLD",
+                            "NEW_VALUE"
+                          ]
+                        },
                         "evaluationWindow": {
                           "description": "A time window is specified to match when at least one of the cases matches true. This is a sliding window\nand evaluates in real time.",
                           "enum": [
@@ -47047,6 +47527,48 @@
                             "TWELVE_HOURS",
                             "ONE_DAY"
                           ]
+                        },
+                        "newValueOptions": {
+                          "description": "Options on new value rules.",
+                          "properties": {
+                            "forgetAfter": {
+                              "description": "The duration in days after which a learned value is forgotten.",
+                              "enum": [
+                                1,
+                                2,
+                                7,
+                                14,
+                                21,
+                                28
+                              ],
+                              "format": "int32",
+                              "type": "integer",
+                              "x-enum-varnames": [
+                                "ONE_DAY",
+                                "TWO_DAYS",
+                                "ONE_WEEK",
+                                "TWO_WEEKS",
+                                "THREE_WEEKS",
+                                "FOUR_WEEKS"
+                              ]
+                            },
+                            "learningDuration": {
+                              "description": "The duration in days during which values are learned, and after which signals will be generated for values that\nweren't learned. If set to 0, a signal will be generated for all new values after the first value is learned.",
+                              "enum": [
+                                0,
+                                1,
+                                7
+                              ],
+                              "format": "int32",
+                              "type": "integer",
+                              "x-enum-varnames": [
+                                "ZERO_DAYS",
+                                "ONE_DAY",
+                                "SEVEN_DAYS"
+                              ]
+                            }
+                          },
+                          "type": "object"
                         }
                       },
                       "type": "object"
@@ -47398,6 +47920,18 @@
                     "options": {
                       "description": "Options on rules.",
                       "properties": {
+                        "detectionMethod": {
+                          "description": "The detection method.",
+                          "enum": [
+                            "threshold",
+                            "new_value"
+                          ],
+                          "type": "string",
+                          "x-enum-varnames": [
+                            "THRESHOLD",
+                            "NEW_VALUE"
+                          ]
+                        },
                         "evaluationWindow": {
                           "description": "A time window is specified to match when at least one of the cases matches true. This is a sliding window\nand evaluates in real time.",
                           "enum": [
@@ -47484,6 +48018,48 @@
                             "TWELVE_HOURS",
                             "ONE_DAY"
                           ]
+                        },
+                        "newValueOptions": {
+                          "description": "Options on new value rules.",
+                          "properties": {
+                            "forgetAfter": {
+                              "description": "The duration in days after which a learned value is forgotten.",
+                              "enum": [
+                                1,
+                                2,
+                                7,
+                                14,
+                                21,
+                                28
+                              ],
+                              "format": "int32",
+                              "type": "integer",
+                              "x-enum-varnames": [
+                                "ONE_DAY",
+                                "TWO_DAYS",
+                                "ONE_WEEK",
+                                "TWO_WEEKS",
+                                "THREE_WEEKS",
+                                "FOUR_WEEKS"
+                              ]
+                            },
+                            "learningDuration": {
+                              "description": "The duration in days during which values are learned, and after which signals will be generated for values that\nweren't learned. If set to 0, a signal will be generated for all new values after the first value is learned.",
+                              "enum": [
+                                0,
+                                1,
+                                7
+                              ],
+                              "format": "int32",
+                              "type": "integer",
+                              "x-enum-varnames": [
+                                "ZERO_DAYS",
+                                "ONE_DAY",
+                                "SEVEN_DAYS"
+                              ]
+                            }
+                          },
+                          "type": "object"
                         }
                       },
                       "type": "object"
@@ -47700,6 +48276,18 @@
                   "options": {
                     "description": "Options on rules.",
                     "properties": {
+                      "detectionMethod": {
+                        "description": "The detection method.",
+                        "enum": [
+                          "threshold",
+                          "new_value"
+                        ],
+                        "type": "string",
+                        "x-enum-varnames": [
+                          "THRESHOLD",
+                          "NEW_VALUE"
+                        ]
+                      },
                       "evaluationWindow": {
                         "description": "A time window is specified to match when at least one of the cases matches true. This is a sliding window\nand evaluates in real time.",
                         "enum": [
@@ -47786,6 +48374,48 @@
                           "TWELVE_HOURS",
                           "ONE_DAY"
                         ]
+                      },
+                      "newValueOptions": {
+                        "description": "Options on new value rules.",
+                        "properties": {
+                          "forgetAfter": {
+                            "description": "The duration in days after which a learned value is forgotten.",
+                            "enum": [
+                              1,
+                              2,
+                              7,
+                              14,
+                              21,
+                              28
+                            ],
+                            "format": "int32",
+                            "type": "integer",
+                            "x-enum-varnames": [
+                              "ONE_DAY",
+                              "TWO_DAYS",
+                              "ONE_WEEK",
+                              "TWO_WEEKS",
+                              "THREE_WEEKS",
+                              "FOUR_WEEKS"
+                            ]
+                          },
+                          "learningDuration": {
+                            "description": "The duration in days during which values are learned, and after which signals will be generated for values that\nweren't learned. If set to 0, a signal will be generated for all new values after the first value is learned.",
+                            "enum": [
+                              0,
+                              1,
+                              7
+                            ],
+                            "format": "int32",
+                            "type": "integer",
+                            "x-enum-varnames": [
+                              "ZERO_DAYS",
+                              "ONE_DAY",
+                              "SEVEN_DAYS"
+                            ]
+                          }
+                        },
+                        "type": "object"
                       }
                     },
                     "type": "object"
@@ -47973,6 +48603,18 @@
                     "options": {
                       "description": "Options on rules.",
                       "properties": {
+                        "detectionMethod": {
+                          "description": "The detection method.",
+                          "enum": [
+                            "threshold",
+                            "new_value"
+                          ],
+                          "type": "string",
+                          "x-enum-varnames": [
+                            "THRESHOLD",
+                            "NEW_VALUE"
+                          ]
+                        },
                         "evaluationWindow": {
                           "description": "A time window is specified to match when at least one of the cases matches true. This is a sliding window\nand evaluates in real time.",
                           "enum": [
@@ -48059,6 +48701,48 @@
                             "TWELVE_HOURS",
                             "ONE_DAY"
                           ]
+                        },
+                        "newValueOptions": {
+                          "description": "Options on new value rules.",
+                          "properties": {
+                            "forgetAfter": {
+                              "description": "The duration in days after which a learned value is forgotten.",
+                              "enum": [
+                                1,
+                                2,
+                                7,
+                                14,
+                                21,
+                                28
+                              ],
+                              "format": "int32",
+                              "type": "integer",
+                              "x-enum-varnames": [
+                                "ONE_DAY",
+                                "TWO_DAYS",
+                                "ONE_WEEK",
+                                "TWO_WEEKS",
+                                "THREE_WEEKS",
+                                "FOUR_WEEKS"
+                              ]
+                            },
+                            "learningDuration": {
+                              "description": "The duration in days during which values are learned, and after which signals will be generated for values that\nweren't learned. If set to 0, a signal will be generated for all new values after the first value is learned.",
+                              "enum": [
+                                0,
+                                1,
+                                7
+                              ],
+                              "format": "int32",
+                              "type": "integer",
+                              "x-enum-varnames": [
+                                "ZERO_DAYS",
+                                "ONE_DAY",
+                                "SEVEN_DAYS"
+                              ]
+                            }
+                          },
+                          "type": "object"
                         }
                       },
                       "type": "object"
